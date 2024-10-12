@@ -21,6 +21,8 @@ runs:
         aws sts get-caller-identity
       shell: bash
     - uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registry-type: private
     - uses: docker/metadata-action@v4
       id: meta
       with:
