@@ -1,5 +1,11 @@
 name: Deploy
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: environment
+        required: true
+        description: 環境名
 env:
   ROLE_ARN: arn:aws:iam::${{ secrets.AWS_ID }}:role/${{ secrets.ROLE_NAME }}
   SESSION_NAME: gh-oidc-${{ github.run_id }}-${{ github.run_attempt }}
@@ -7,6 +13,7 @@ env:
   AWS_REGION: us-east-1          # リージョンをus-east-1に変更
 jobs:
   deploy:
+    environment: ${{ inputs.environment-name }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
