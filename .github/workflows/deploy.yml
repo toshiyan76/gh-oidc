@@ -20,7 +20,7 @@ jobs:
         id: build
         with:
           ecr-repository-uri: ${{ vars.ECR_REPOSITORY_URI }}
-          dockerfile-path: docker/ecs
+          dockerfile-path: docker/ecs/
       - uses: ./.github/actions/container-deploy
         with:
           ecr-cluster: ${{ vars.ECR_CLUSTER_NAME }}
